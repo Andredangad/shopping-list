@@ -4,6 +4,35 @@ import ReactDOM from 'react-dom';
 
 class ShoppingList extends React.Component {
     render() {
+        return (
+            <div>
+            <Search />
+            <Result shoppingItems = {this.props.shoppingItems}/>
+            </div>
+
+
+
+        )
+    };
+}
+
+class Search extends React.Component {
+    render() {
+        return (
+            <form>
+                <input type="text" placeholder="Search..." />
+                <p>
+                    <input type="checkbox" />
+                    {' '}
+                    Only show products in stock
+                </p>
+            </form>
+        )
+    };
+}
+
+class Result extends React.Component {
+    render() {
         let list = [];
         let currentCategory = null;
         this.props.shoppingItems.forEach(element => {
@@ -18,7 +47,6 @@ class ShoppingList extends React.Component {
             currentCategory = element.category;
 
         })
-        console.log(list);
         return (
             <table>
                 <thead>
@@ -31,22 +59,6 @@ class ShoppingList extends React.Component {
             </table>
 
 
-        )
-    };
-}
-
-class Search extends React.Component {
-    render() {
-        return (
-            <h1>Bonjour Monde !</h1>
-        )
-    };
-}
-
-class Result extends React.Component {
-    render() {
-        return (
-            <h1>Bonjour Monde !</h1>
         )
     };
 }
