@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 // import './index.css';
 
 class ShoppingList extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            searchValue:'',
+            stockShow:true,
+
+        }
+    }
     render() {
         return (
             <div>
-            <Search />
+            <Search searchValue = {this.state.searchValue}/>
             <Result shoppingItems = {this.props.shoppingItems}/>
             </div>
 
@@ -20,7 +28,7 @@ class Search extends React.Component {
     render() {
         return (
             <form>
-                <input type="text" placeholder="Search..." />
+                <input type="text" placeholder="Search..." value = {this.props.searchValue}/>
                 <p>
                     <input type="checkbox" />
                     {' '}
