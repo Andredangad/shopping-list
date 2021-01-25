@@ -10,12 +10,20 @@ class ShoppingList extends React.Component {
             stockShow:true,
 
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(value){
+        this.setState({
+        searchValue:value,
+
+        })
     }
     render() {
+
         return (
             <div>
-            <Search searchValue = {this.state.searchValue}/>
-            <Result shoppingItems = {this.props.shoppingItems}/>
+            <Search searchValue = {this.state.searchValue} filter = {this.handleChange} filterText = {this.state.searchValue}/>
+            <Result shoppingItems = {this.props.shoppingItems} state = {this.state}/>
             </div>
 
 
@@ -26,9 +34,10 @@ class ShoppingList extends React.Component {
 
 class Search extends React.Component {
     render() {
+  
         return (
             <form>
-                <input type="text" placeholder="Search..." value = {this.props.searchValue}/>
+                <input type="text" placeholder="Search..." onChange={e => this.props.filter(e.target.value)} value={this.props.filterText}/>
                 <p>
                     <input type="checkbox" />
                     {' '}
@@ -41,6 +50,7 @@ class Search extends React.Component {
 
 class Result extends React.Component {
     render() {
+        console.log(this.props.state)
         let list = [];
         let currentCategory = null;
         this.props.shoppingItems.forEach(element => {
